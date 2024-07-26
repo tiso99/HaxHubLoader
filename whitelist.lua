@@ -1,6 +1,7 @@
 local whitelist = {
 
 
+
     onlywooska = "owner",
     Wildman_TheGoat = "DWQJU238432Bcifohj",
     TREFUEGO98 = "IUROHGPUY845njbio",
@@ -24,6 +25,8 @@ local whitelist = {
     ABZUES_RTX = "kdosmpsjwu29",
 	euejduq = "dwa3r23cdsa129",
 	
+
+pepe9 = "RMHybCvuAEvUv7cO",
 }
 
 return whitelist
