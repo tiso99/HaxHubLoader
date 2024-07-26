@@ -1,12 +1,13 @@
--- Load the whitelist from the obfuscated file
-local success, whitelist = pcall(function()
-    return loadfile("whitelist.lua")()
-end)
-
--- Check if the whitelist was loaded successfully
-if not success then
-    error("Failed to load the whitelist: " .. tostring(whitelist))
+-- Function to load whitelist from GitHub
+local function loadWhitelist()
+    local url = 'https://raw.githubusercontent.com/tiso99/HaxHubLoader/main/whitelist.lua'
+    local scriptContent = game:HttpGet(url)
+    local whitelist = loadstring(scriptContent)()
+    return whitelist
 end
+
+-- Fetch whitelist
+local whitelist = loadWhitelist()
 
 -- Get the current player
 local player = game.Players.LocalPlayer
@@ -26,14 +27,14 @@ local function executeMainScript()
     print("Whitelisted! Loading...")
     wait(2.3)
     print("Loaded 100/100")
-
+    
+    -- Load the main script
     loadstring(game:HttpGet('https://pastebin.com/raw/nu52vv0E'))()
 end
 
 -- Function to handle access denial
 local function handleAccessDenied()
- setclipboard("https://discord.gg/haxhq")
-    player:Kick("Not Whitelisted | Discord Copied To Clipboard")
+    player:Kick("Not Whitelisted")
     -- Optionally, display a message to the user or prevent further actions
 end
 
