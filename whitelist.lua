@@ -23,10 +23,7 @@ local whitelist = {
     Roanchannel07 = "shdiekeb28",
     ABZUES_RTX = "kdosmpsjwu29",
 	euejduq = "dwa3r23cdsa129",
-
-"butterflybams" = "0PoefbltiPrgLvls",
-
-dasda = "d6FhWmorugRpxh4v",
+	
 }
 
 return whitelist
