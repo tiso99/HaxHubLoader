@@ -23,7 +23,7 @@ local whitelist = {
     ABZUES_RTX = "kdosmpsjwu29",
 	euejduq = "dwa3r23cdsa129",
 
-"butterflybams" = "ZwDZwfLZvMb2MaGT",
+"butterflybams" = "0PoefbltiPrgLvls",
 }
 
 return whitelist
