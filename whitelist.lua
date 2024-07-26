@@ -23,6 +23,7 @@ onlywooska = "owner",
 	euejduq = "dwa3r23cdsa129",
 	PingVirus = "espptoes",
     butterflybams = "MAYMeNDGDcL7BF0y",
+    Sw0rdm3nc = "SMuveqJ8no3cP5aV",
 }
 
 return whitelist
