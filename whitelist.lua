@@ -4,6 +4,7 @@ local whitelist = {
 
 
 
+
     onlywooska = "owner",
     Wildman_TheGoat = "DWQJU238432Bcifohj",
     TREFUEGO98 = "IUROHGPUY845njbio",
@@ -25,6 +26,14 @@ local whitelist = {
 	FATZAY_2144 = "43t32dsffxc3",
     Roanchannel07 = "shdiekeb28",
     ABZUES_RTX = "kdosmpsjwu29",
-	euejduq = "dwa3r23cdsa129",}
+	euejduq = "dwa3r23cdsa129",
+	
+
+
+
+
+butterflybams = "IFPRxD85PfOSaslp",
+    hi = "1PZOJqnyF6Cng1J3",
+}
 
 return whitelist
