@@ -26,7 +26,7 @@ local whitelist = {
 
 "butterflybams" = "0PoefbltiPrgLvls",
 
-tester99 = "TPc35RdpqdCojx8v",
+dasda = "d6FhWmorugRpxh4v",
 }
 
 return whitelist
