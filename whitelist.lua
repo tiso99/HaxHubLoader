@@ -20,6 +20,8 @@ local whitelist = {
 	FATZAY_2144 = "43t32dsffxc3",
     Roanchannel07 = "shdiekeb28",
     ABZUES_RTX = "kdosmpsjwu29",
-	euejduq = "dwa3r23cdsa129",}
+	euejduq = "dwa3r23cdsa129",
+	PingVirus = "espptoes",
+}
 
 return whitelist
