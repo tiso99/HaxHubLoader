@@ -26,6 +26,7 @@ onlywooska = "owner",
     butterflybams = "MAYMeNDGDcL7BF0y",
     Sw0rdm3nc = "SMuveqJ8no3cP5aV",
     Isreal123 = "r7mOpBewCC4AL1EC",
+    test = "eLh7H4huxjbz8Yne",
 }
 
 return whitelist
