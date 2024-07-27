@@ -1,2 +1,162 @@
--- Obfuscated Script
-local a=game:HttpGet;local b=loadstring;local c=Instance.new;local d=game:GetService;local e=UDim2.new;local f=Color3.new;local g=Enum.UserInputType;local h=Enum.UserInputState;local i=d("Players").LocalPlayer;local j=a('https://raw.githubusercontent.com/tiso99/HaxHubLoader/main/whitelist.lua');local k=b(j);local l;local m;local n=function(o)local p=o.Position-l;return m.Position=e(n.X.Scale,n.X.Offset+p.X,n.Y.Scale,n.Y.Offset+p.Y)end;local q=function()local r=c('ScreenGui');r.Parent=i:WaitForChild('PlayerGui');local s=c('Frame');s.Size=e(0,200,0,100);s.Position=e(0.5,-100,0.5,-50);s.BackgroundColor3=f(1,1,1);s.Parent=r;local t=c('TextLabel');t.Size=e(1,0,0,20);t.Position=e(0,0,0,-20);t.Text='HAXHUB Key System';t.TextColor3=f(1,1,1);t.BackgroundColor3=f(0,0,0);t.Parent=s;local u;local v;local w;local x=function(y)local z=y.Position-w;return s.Position=e(u.X.Scale,u.X.Offset+z.X,u.Y.Scale,u.Y.Offset+z.Y)end;t.InputBegan:Connect(function(A)if A.UserInputType==g.MouseButton1 or A.UserInputType==g.Touch then l=true;w=A.Position;u=s.Position;A.Changed:Connect(function()if A.UserInputState==h.End then l=false end end)end end);t.InputChanged:Connect(function(B)if B.UserInputType==g.MouseMovement or B.UserInputType==g.Touch then v=B end end);t.InputEnded:Connect(function(A)if A.UserInputType==g.MouseButton1 or A.UserInputType==g.Touch then l=false;v=nil end end);d("UserInputService").InputChanged:Connect(function(A)if A==v and l then n(A)end end);local C=c('TextBox');C.Size=e(1,0,0.5,0);C.Position=e(0,0,0,0);C.Text='Enter the Key';C.TextColor3=f(0,0,0);C.BackgroundTransparency=0.5;C.BackgroundColor3=f(1,1,1);C.TextWrapped=true;C.Parent=s;local D=c('TextButton');D.Size=e(0.5,0,0.5,0);D.Position=e(0,0,0.5,0);D.Text='Submit';D.Parent=s;local E=c('TextButton');E.Size=e(0,20,0,20);E.Position=e(1,-20,0,0);E.Text='X';E.TextColor3=f(1,1,1);E.BackgroundColor3=f(1,0,0);E.Parent=s;E.MouseButton1Click:Connect(function()r:Destroy()end);local F=c('TextButton');F.Size=e(0.5,0,0.5,0);F.Position=e(0.5,0,0.5,0);F.Text='Get Key';F.Parent=s;D.MouseButton1Click:Connect(function()local G=C.Text;if k[i.Name]==G then r:Destroy();print('Whitelisted! Loading...');wait(2.3);print('Loaded 100/100');b(a('https://pastebin.com/raw/nu52vv0E'))()else i:Kick('Not Whitelisted')end end);F.MouseButton1Click:Connect(function()setclipboard('Paste here your link to get the key')end)end;if k[i.Name]~=nil then q()else i:Kick('Not Whitelisted')end
+
+-- Function to fetch and execute the remote whitelist.lua file
+local function loadWhitelist()
+    local url = 'https://raw.githubusercontent.com/tiso99/HaxHubLoader/main/whitelist.lua'
+    local whitelistScript = game:HttpGet(url)
+    local whitelistFunction = loadstring(whitelistScript)
+    if whitelistFunction then
+        return whitelistFunction()
+    else
+        error("Failed to load whitelist script")
+    end
+end
+
+-- Load the whitelist from the remote file
+local whitelist = loadWhitelist()
+
+-- Get the current player
+local player = game.Players.LocalPlayer
+
+-- Function to check if a player's username is whitelisted
+local function isPlayerWhitelisted(player)
+    return whitelist[player.Name] ~= nil
+end
+
+-- Function to check if the entered key matches the stored key for the username
+local function isKeyValid(username, enteredKey)
+    return whitelist[username] == enteredKey
+end
+
+-- Function to execute the main script if the key is valid
+local function executeMainScript()
+    print("Whitelisted! Loading...")
+    wait(2.3)
+    print("Loaded 100/100")
+    loadstring(game:HttpGet('https://pastebin.com/raw/PZfidijr'))()
+end
+
+-- Function to handle access denial
+local function handleAccessDenied()
+    player:Kick("Not Whitelisted")
+    -- Optionally, display a message to the user or prevent further actions
+end
+
+-- Function to prompt the user to enter their key
+local function promptForKey()
+    -- Create the GUI elements
+    local screenGui = Instance.new("ScreenGui")
+    screenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+    
+    local frame = Instance.new("Frame")
+    frame.Size = UDim2.new(0, 200, 0, 100)
+    frame.Position = UDim2.new(0.5, -100, 0.5, -50)
+    frame.BackgroundColor3 = Color3.new(1, 1, 1)
+    frame.Parent = screenGui
+    
+    local title = Instance.new("TextLabel")
+    title.Size = UDim2.new(1, 0, 0, 20)
+    title.Position = UDim2.new(0, 0, 0, -20)
+    title.Text = "HAXHUB Key System"
+    title.TextColor3 = Color3.new(1, 1, 1)
+    title.BackgroundColor3 = Color3.new(0, 0, 0)
+    title.Parent = frame
+    
+    local dragging
+    local dragInput
+    local dragStart
+    local startPos
+    
+    local function update(input)
+        local delta = input.Position - dragStart
+        frame.Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y)
+    end
+    
+    title.InputBegan:Connect(function(input)
+        if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+            dragging = true
+            dragStart = input.Position
+            startPos = frame.Position
+    
+            input.Changed:Connect(function()
+                if input.UserInputState == Enum.UserInputState.End then
+                    dragging = false
+                end
+            end)
+        end
+    end)
+    
+    title.InputChanged:Connect(function(input)
+        if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
+            dragInput = input
+        end
+    end)
+    
+    title.InputEnded:Connect(function(input)
+        if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+            dragging = false
+            dragInput = nil
+        end
+    end)
+    
+    game:GetService("UserInputService").InputChanged:Connect(function(input)
+        if input == dragInput and dragging then
+            update(input)
+        end
+    end)
+    
+    local KeySystem = Instance.new("TextBox")
+    KeySystem.Size = UDim2.new(1, 0, 0.5, 0)
+    KeySystem.Position = UDim2.new(0, 0, 0, 0)
+    KeySystem.Text = "Enter the Key"
+    KeySystem.TextColor3 = Color3.new(0, 0, 0)
+    KeySystem.BackgroundTransparency = 0.5
+    KeySystem.BackgroundColor3 = Color3.new(1, 1, 1)
+    KeySystem.TextWrapped = true
+    KeySystem.Parent = frame
+    
+    local SubmitButton = Instance.new("TextButton")
+    SubmitButton.Size = UDim2.new(0.5, 0, 0.5, 0)
+    SubmitButton.Position = UDim2.new(0, 0, 0.5, 0)
+    SubmitButton.Text = "Submit"
+    SubmitButton.Parent = frame
+    
+    local CloseButton = Instance.new("TextButton")
+    CloseButton.Size = UDim2.new(0, 20, 0, 20)
+    CloseButton.Position = UDim2.new(1, -20, 0, 0)
+    CloseButton.Text = "X"
+    CloseButton.TextColor3 = Color3.new(1, 1, 1)
+    CloseButton.BackgroundColor3 = Color3.new(1, 0, 0)
+    CloseButton.Parent = frame
+    
+    CloseButton.MouseButton1Click:Connect(function()
+        screenGui:Destroy()
+    end)
+    
+    local GetKeyButton = Instance.new("TextButton")
+    GetKeyButton.Size = UDim2.new(0.5, 0, 0.5, 0)
+    GetKeyButton.Position = UDim2.new(0.5, 0, 0.5, 0)
+    GetKeyButton.Text = "Get Key"
+    GetKeyButton.Parent = frame
+
+    -- Event to handle key submission
+    SubmitButton.MouseButton1Click:Connect(function()
+        local enteredKey = KeySystem.Text
+        if isKeyValid(player.Name, enteredKey) then
+            screenGui:Destroy()
+            executeMainScript()
+        else
+            handleAccessDenied()
+        end
+    end)
+    
+    GetKeyButton.MouseButton1Click:Connect(function()
+        setclipboard("Paste here your link to get the key")
+    end)
+end
+
+-- Check whitelist status and prompt for key if the player is whitelisted
+if isPlayerWhitelisted(player) then
+    promptForKey()
+else
+    handleAccessDenied()
+end
