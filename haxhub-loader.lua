@@ -1,24 +1,17 @@
+-- Function to fetch and execute the remote whitelist.lua file
 local function loadWhitelist()
     local url = 'https://raw.githubusercontent.com/tiso99/HaxHubLoader/main/whitelist.lua'
-    print("Fetching whitelist from:", url)
-    local scriptContent = game:HttpGet(url, true)  -- Ensure HTTP requests are allowed
-    print("Script content fetched.")
-    local success, whitelist = pcall(loadstring(scriptContent))
-    if success then
-        print("Whitelist loaded successfully.")
-        return whitelist()
+    local whitelistScript = game:HttpGet(url)
+    local whitelistFunction = loadstring(whitelistScript)
+    if whitelistFunction then
+        return whitelistFunction()
     else
-        print("Error loading whitelist:", whitelist)
-        return nil
+        error("Failed to load whitelist script")
     end
 end
 
--- Fetch whitelist
+-- Load the whitelist from the remote file
 local whitelist = loadWhitelist()
-if not whitelist then
-    warn("Failed to load the whitelist.")
-    return
-end
 
 -- Get the current player
 local player = game.Players.LocalPlayer
@@ -38,15 +31,13 @@ local function executeMainScript()
     print("Whitelisted! Loading...")
     wait(2.3)
     print("Loaded 100/100")
-    
-    -- Load the main script
-    loadstring(game:HttpGet('https://pastebin.com/raw/PZfidijr', true))()
+    loadstring(game:HttpGet('https://pastebin.com/raw/nu52vv0E'))()
 end
 
 -- Function to handle access denial
 local function handleAccessDenied()
-    setclipboard("https://discord.gg/haxhq")
-    player:Kick("Not Whitelisted | Discord Copied To Clipboard")
+    player:Kick("Not Whitelisted")
+    -- Optionally, display a message to the user or prevent further actions
 end
 
 -- Function to prompt the user to enter their key
