@@ -1,30 +1,24 @@
-local whitelist = {
-    onlywooska = "owner",
-    butterflybams = "tiso",
-    Wildman_TheGoat = "DWQJU238432Bcifohj",
-    TREFUEGO98 = "IUROHGPUY845njbio",
-	hibro221234 = "IUROaIKD82wg894w",
-	AloomCore = "tiso",
-	writemyalbum = "y5u8923g6818904kms",
-	Mynameis_blazer = "da7815rdfsaijn",
-	zayjohncena = "5hy5riju89234iu890",
-	MyGIockss = "4386856kgfoptrmef2",
-	JLRCOOLDOGALT1 = "mxznbayuas82561",
-	BlockSpinnaWick = "grh8289by8qw",
-	mrcoolkid4277 = "gdwe23r13r3",
-	llllll111111LLLLLLL7 = "NSKjdospsn1",
-	DARKxXENO06 = "haxhqq",
-	veriflixtwin = "buyhaxhq",
-	deegotexotic = "bw233321",
-    TIN_KOSAY = "greger7823h",
-	Oldmanfranknpc = "jdbdhxud",
-	FATZAY_2144 = "43t32dsffxc3",
-    Roanchannel07 = "shdiekeb28",
-    ABZUES_RTX = "kdosmpsjwu29",
-	euejduq = "dwa3r23cdsa129",
+-- URL of the whitelist file on GitHub
+local whitelistURL = "https://raw.githubusercontent.com/tiso99/HaxHubMain/main/whitelist.lua"
 
-    -- Add more usernames and keys as needed
-}
+-- Function to fetch and load the whitelist
+local function fetchWhitelist(url)
+    local response = game:HttpGet(url)
+    local success, result = pcall(function() return loadstring(response)() end)
+    if success then
+        return result
+    else
+        return nil
+    end
+end
+
+-- Fetch the whitelist from GitHub
+local whitelist = fetchWhitelist(whitelistURL)
+
+if not whitelist then
+    game.Players.LocalPlayer:Kick("Failed to fetch whitelist")
+    return
+end
 
 -- Get the current player
 local player = game.Players.LocalPlayer
@@ -39,23 +33,18 @@ local function isKeyValid(username, enteredKey)
     return whitelist[username] == enteredKey
 end
 
-
-
 -- Function to execute the main script if the key is valid
 local function executeMainScript()
     print("Whitelisted! Loading...")
     wait(2.3)
     print("Loaded 100/100")
 
- 
     loadstring(game:HttpGet('https://pastebin.com/raw/nu52vv0E'))()
-
 end
 
 -- Function to handle access denial
 local function handleAccessDenied()
     player:Kick("Not Whitelisted")
-    -- Optionally, display a message to the user or prevent further actions
 end
 
 -- Function to prompt the user to enter their key
